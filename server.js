@@ -156,8 +156,8 @@ app.get('/uploads_SendPlan/:id',(req,res)=>{
 
 })
 //******************Tous les plans*************************
-app.get('/uploads_AllPlan',(req,res)=>{
-    db.all("SELECT * FROM Plans;",(err,row)=>{
+app.get('/uploads_AllPlan/:id', async (req, res) => {
+    db.all("SELECT Plans.ID,Plans.Nom,Pieces.Nom as PieceNom FROM Plans JOIN Pieces ON PieceIDPlan = Pieces.ID WHERE IdProjet = ?;",[req.params.id],(err,row)=>{
         if(err){
             return console.log(err.message)
         }
@@ -166,8 +166,7 @@ app.get('/uploads_AllPlan',(req,res)=>{
             res.send(row)
         }
     })
-
-})
+});
 //*****************Project in archives***********************
 app.put("/api/ArchiveProject/:id",(req,res)=>{
     db.run("UPDATE Projets SET Supprime = 1 WHERE ID = ?;",[req.params.id],(err)=>{

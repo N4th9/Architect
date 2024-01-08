@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="img/HouseLogo.png" />
     <title>Architect</title>
-    <script src="Client.js"></script>
+    <script src="client.js"></script>
     <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
@@ -47,6 +48,9 @@
                     <input class="choosefiles" type="file" value="Choisir fichier" accept=".png ,.jpg ,.jpeg" name="fileplan">
                     <button class="submit-btn" type='submit'>Upload</button>
                 </form>
+            </div>
+            <div id="AllPlans" style="display: block">
+                <form id="FormUploadsAllPlans" action="/uploads" enctype="multipart/form-data"></form>
             </div>
         </div>
     </div>

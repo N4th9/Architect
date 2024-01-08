@@ -1,11 +1,11 @@
 const localhost = "http://localhost:3500"
 
-var MyActualProject = {
+let MyActualProject = {
     id: 0,
     name: "",
     description:""
 }
-var MyActualPiece = {
+let MyActualPiece = {
     id: 0,
     IdProjet: 0,
     Piecename: "",
@@ -293,6 +293,32 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     }
     function submitAllPlans(){
+        const picturesContainerAllPlans = document.querySelector('#AllPlans');
+        picturesContainerAllPlans.innerText = "";
+        ShowPiece.style.display = "none"
+        fetch(localhost + "/uploads_AllPlan/" + MyActualProject.id, {
+            method: "GET"
+        })
+            .then(response => {
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        throw new Error(`Les plans pour la pièce avec l'ID ${MyActualPiece.id} n'ont pas été trouvées.`);
+                    } else {
+                        throw new Error(`Erreur lors de la récupération des données : ${response.status}`);
+                    }
+                }
+                return response.json();
+            })
+            .then(data => {
+                for (let i = 0; i < data.length; i++) {
+                    let img = document.createElement('img');
+                    img.src = "uploads/" + data[i].Nom;
+                    picturesContainerAllPlans.append(img);
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
     }
     function ShowArchives() {
         document.getElementById("Project").style.display = "none"
