@@ -12,6 +12,8 @@ let MyActualPiece = {
     Piecedescription:""
 }
 
+let AllPlans = false;
+
 document.addEventListener("DOMContentLoaded", () => {
     const BtnBurger = document.getElementById("sidebar")
     const BtnPiece = document.getElementById("sidePiece")
@@ -35,6 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const ListArchives = document.getElementById("listArchives")
     const buttonArchives = document.getElementById("buttonArchives")
     const HiArchives = document.getElementById("HiddenArchives")
+    const picturesContainerAllPlans = document.querySelector('#AllPlans');
+    let DivShowPiece = document.getElementById("ShowPiece");
 
     //******************Keyup of Event************************
     ProjectTitle.addEventListener('keyup', UpdateProject)
@@ -293,9 +297,20 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     }
     function submitAllPlans(){
-        const picturesContainerAllPlans = document.querySelector('#AllPlans');
+
+        DivShowPiece.style.display = "none";
         picturesContainerAllPlans.innerText = "";
-        ShowPiece.style.display = "none"
+
+
+        if (AllPlans) {
+            DivShowPiece.style.display = "";
+            picturesContainerAllPlans.style.display = "none";
+        } else {
+            picturesContainerAllPlans.style.display = "";
+            DivShowPiece.style.display = "none";
+        }
+        AllPlans = !AllPlans;
+
         fetch(localhost + "/uploads_AllPlan/" + MyActualProject.id, {
             method: "GET"
         })
