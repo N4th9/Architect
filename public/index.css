@@ -1,0 +1,198 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "High Tower Text";
+    display: flex;
+}
+.translated{
+    translate: -250px;
+}
+.translatedPiece{
+    translate: -220px;
+}
+.pageHTML{
+    display: flex;
+}
+.sidebar{
+    position: fixed;
+    background-color: black;
+    color: white;
+    width: 250px;
+    height: 100%;
+    overflow-x: hidden;
+}
+.ShArchives{
+    margin: 950px 0px 0px 40px;
+    position: inherit;
+}
+.HArchives{
+    margin: 950px 0px 0px 40px;
+    position: inherit;
+}
+.projects{
+    font-size: 30px;
+    margin: 30px 0px 40px 25px;
+}
+.btnproject{
+    margin: 0 0 20px 40px;
+}
+.list{
+    padding: 0;
+    font-size: 20px;
+}
+p{
+    margin: 20px 0 20px 0;
+    height: 41px;
+    cursor: pointer;
+}
+p button{
+    display: none;
+}
+.list p:hover{
+    background-color: lightgray;
+    color: black;
+}
+.list p:hover button{
+    background-color: lightgray;
+    color: black;
+    display: unset;
+}
+item{
+    width: auto;
+    padding: 0px 0px 60px 0px;
+    margin: 0px 20px 0px 20px;
+    display: flex;
+}
+.Project{
+    width: 900px;
+    position: fixed;
+    transition: all .5s ease;
+    height: 100vh;
+    background-color: white;
+    margin-left: 250px;
+}
+.MenuBurger{
+    cursor: pointer;
+    margin-left: 10px;
+    margin-top: 40px;
+    height: 30px;
+    width: 20px;
+    position: absolute;
+}
+.MenuBurgerPiece{
+    cursor: pointer;
+    margin: 24px 0 0 11px;
+    height: 30px;
+    width: 20px;
+    position: absolute;
+}
+.ShowPiece{
+    transition: all .5s ease;
+    background-color: white;
+}
+.trashicon{
+    cursor: pointer;
+    margin-left: 800px;
+    margin-top: 40px;
+    width: 20px;
+    position: absolute;
+}
+.trashicon2{
+    cursor: pointer;
+    margin-left: 582px;
+    margin-top: 40px;
+    width: 20px;
+    position: absolute;
+}
+.ProjectTitle{
+    font-size: xx-large;
+    margin: 20px 200px 20px 50px;
+}
+.DescriptionTitle{
+    margin: 0px 0px 0px 50px;
+}
+.line{
+    border-bottom: grey solid 1px;
+    width: 100%;
+}
+.Piece{
+    display: flex;
+}
+.BarPiece{
+    margin: 0;
+    background-color: lightgray;
+    font-size: 30px;
+    position: static;
+    overflow-x: hidden;
+    height: 100vh;
+    width: 220px;
+}
+.ItemPiece{
+    padding: 20px 0px 20px 30px;
+    margin: 0;
+    width: 180px;
+}
+.click{
+    cursor: pointer;
+}
+itempiece{
+    cursor: pointer;
+    width: auto;
+    padding: 0 0 60px 0;
+    margin: 0 20px 0 20px;
+    display: flex;
+}
+.PieceTitle{
+    margin: 0 0 0 20px;
+    padding: 20px 0 10px 20px;
+}
+.DescriptionPiece{
+    margin: 0 0 0 20px;
+    padding: 10px 0 20px 20px;
+}
+.uploadsTitle{
+    margin: 0 0 0 20px;
+    padding: 10px 0 20px 20px;
+}
+.choosefiles{
+    margin-left: 20px;
+    padding-left: 20px;
+}
+#Pictures img{
+    margin-left: 10px;
+    max-width: 400px;
+}
+#Pictures{
+    column-count: 2;
+    margin-left: 20px;
+}
+FormUploads{
+    margin-left: 40px;
+}
+.uploadsTitlePlans{
+    margin: 0 0 0 20px;
+    padding: 30px 0 20px 20px;
+}
+#Plans{
+    column-count: 2;
+    margin-left: 20px;
+}
+.ItemAllPlans{
+    font-family: "Calibri Light";
+    margin-left: 10px;
+    cursor: pointer;
+}
+.Archives{
+    margin: 0 0 0 250px;
+}
+.titleArchives{
+    margin: 50px 0 50px 738px;
+}
+.pNomArchives{
+    margin: 0 0 40px 528px;
+    font-size: 30px;
+    width: 300px;
+}
+.ArchivesNomButtons{
+    display: flex;
+}

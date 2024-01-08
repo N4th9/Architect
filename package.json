@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
+    "sqlite3": "^5.1.6",
+    "supervisor": "^0.12.0"
+  },
+  "name": "projetweb",
+  "version": "1.0.0",
+  "main": "node.js",
+  "scripts": {
+    "start": "supervisor server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

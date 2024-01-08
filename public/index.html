@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Architect</title>
+    <script src="Client.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+<div class="pageHTML">
+    <div class="sidebar">
+        <button id="ShowArchives" class="ShArchives">Voir les archives</button>
+        <button id="HiddenArchives" class="HArchives">Cacher les archives</button>
+        <p class="projects"><b>Vos projets</b></p>
+        <button class="btnproject" id="btnproject">Créer un projet</button>
+        <ul class="list" id="projectList">
+        </ul>
+    </div>
+
+    <div class="Project" id="Project">
+        <img id="sidebar" class="MenuBurger" src="/img/MenuBurger.png">
+        <img id="deleteproject" class="trashicon" src="/img/trash.png">
+        <h1 id="ProjectTitle" class="ProjectTitle" contenteditable="true">Choisir un projet</h1>
+        <h4 id="DescriptionTitle" class="DescriptionTitle" contenteditable="true">Description du projet</h4>
+        <div class="line"></div>
+        <div class="Piece">
+            <div class="BarPiece">
+                <p class="ItemPiece">Pièce <a class="click" id="btnpiece">+</a></p>
+                <ul class="list" id="listpiece">
+                </ul>
+                <a class="ItemAllPlans" id="BtnAllPlans">Tous les plans -> </a>
+            </div>
+            <div id="ShowPiece" class="ShowPiece">
+                <img id="sidePiece" class="MenuBurgerPiece" src="/img/MenuBurger.png">
+                <img id="deletepiece" class="trashicon2" src="/img/trash.png">
+                <h1 class="PieceTitle" id="PieceTitle" contenteditable="true">Choisissez une pièce</h1>
+                <h4 class="DescriptionPiece" id="DescriptionPieceTitle" contenteditable="true">Description de la pièce</h4>
+                <h2 class="uploadsTitle" id="uploadsTitle">Images : </h2>
+                <div id="Pictures" style="display: block"></div>
+                <form id="FormUploads" action="/uploads" enctype="multipart/form-data">
+                    <input class="choosefiles" type="file" value="Choisir fichier" accept=".png ,.jpg ,.jpeg" id="file" name="file">
+                    <button class="submit-btn" type='submit'>Upload</button>
+                </form>
+                <h2 class="uploadsTitlePlans" id="uploadTitlePlans">Plans : </h2>
+                <div id="Plans" style="display: block"></div>
+                <form id="FormUploadsPlans" action="/uploads" enctype="multipart/form-data">
+                    <input class="choosefiles" type="file" value="Choisir fichier" accept=".png ,.jpg ,.jpeg" name="fileplan">
+                    <button class="submit-btn" type='submit'>Upload</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="Archives" id="Archives">
+        <h1 class="titleArchives">Archives</h1>
+        <div class="ArchivesNomButtons">
+            <div id="listArchives">
+            </div>
+            <div id="buttonArchives" class="buttonsArchives">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
