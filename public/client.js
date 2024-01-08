@@ -48,8 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
     deleteproject.addEventListener("click", DeleteProject)
     ButtonPiece.addEventListener("click", CreatePiece)
     deletepiece.addEventListener("click", DeletePiece)
-    FormUploads.addEventListener("submit", submitForm)
-    FormUploadsPlans.addEventListener("submit", submitPlan)
+    FormUploads.addEventListener("submit", submitImages)
+    FormUploadsPlans.addEventListener("submit", submitPlans)
     FormAllPlans.addEventListener("click", submitAllPlans)
     ShArchives.addEventListener("click", ShowArchives)
     HiArchives.addEventListener("click", HiddenArchives)
@@ -204,17 +204,8 @@ document.addEventListener("DOMContentLoaded", () => {
         PieceTitle.innerText = MyActualPiece.Piecename
         DescriptionPieceTitle.innerText = MyActualPiece.Piecedescription
 
-        //***************Permet de mettre à jour l'affichage des images***********
-        document.querySelector('#Pictures').innerText=""
-        fetch(localhost + "/uploads/" + MyActualPiece.id,{
-            method:"GET"
-        })
-            .then(data => data.json())
-            .then(function (data) {
-                DisplayImages(data)
-            })
         //***************Permet de mettre à jour l'affichage des plans***********
-        document.querySelector('#Plans').innerText=""
+        document.querySelector('#Plans').innerText = ""
         fetch(localhost + "/uploads/" + MyActualPiece.id,{
             method:"GET"
         })
@@ -226,9 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
         DisplayImages()
         DisplayPlans()
     }
-    function submitForm(e) {
-        e.preventDefault();
-
+    function submitImages() {
         fetch(localhost + "/uploads_img/" + MyActualPiece.id, {
             method: 'POST',
             body: new FormData(document.getElementById("FormUploads"))
@@ -237,20 +226,36 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(DisplayImages)
             .catch((err) => ("Error occured", err));
     }
-    function DisplayImages(data) {
+    function DisplayImages() {
+        const picturesContainer = document.querySelector('#Pictures');
+        picturesContainer.innerText = "";
         fetch(localhost + "/uploads/" + MyActualPiece.id, {
             method: "GET"
-        }).then(data=> data.json())
-        for (let i = 0; i < data.length; i++) {
-            let img = document.createElement('img')
-            img.src = "uploads/" + data[i].Nom
-            let p = document.querySelector('#Pictures')
-            p.append(img)
-        }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        throw new Error(`Les images pour la pièce avec l'ID ${MyActualPiece.id} n'ont pas été trouvées.`);
+                    } else {
+                        throw new Error(`Erreur lors de la récupération des données : ${response.status}`);
+                    }
+                }
+                return response.json();
+            })
+            .then(data => {
+                for (let i = 0; i < data.length; i++) {
+                    let img = document.createElement('img');
+                    img.src = "uploads/" + data[i].Nom;
+                    picturesContainer.append(img);
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                // Gérer les erreurs ici, par exemple, afficher un message à l'utilisateur.
+            });
     }
-    function submitPlan(e){
-        e.preventDefault();
 
+    function submitPlans(e){
         fetch(localhost + "/uploads_plans/" + MyActualPiece.id, {
             method: 'POST',
             body: new FormData(document.getElementById("FormUploadsPlans"))
@@ -259,36 +264,35 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(DisplayPlans)
             .catch((err) => ("Error " + err));
     }
-    function DisplayPlans() {
-        fetch(localhost + "/uploads_SendPlan/" + MyActualPiece.id,{
-            method:"GET"
+    function DisplayPlans(data) {
+        const picturesContainer = document.querySelector('#Plans');
+        picturesContainer.innerText = "";
+        fetch(localhost + "/uploads_SendPlan/" + MyActualPiece.id, {
+            method: "GET"
         })
-            .then(data => data.json())
-            .then(function (data){
-                for(let i = 0; i < data.length; i++){
-                    let img = document.createElement('img')
-                    img.src = "uploads/" + data[i].Nom
-                    let div = document.querySelector('#Plans')
-                    div.append(img)
+            .then(response => {
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        throw new Error(`Les plans pour la pièce avec l'ID ${MyActualPiece.id} n'ont pas été trouvées.`);
+                    } else {
+                        throw new Error(`Erreur lors de la récupération des données : ${response.status}`);
+                    }
+                }
+                return response.json();
+            })
+            .then(data => {
+                for (let i = 0; i < data.length; i++) {
+                    let img = document.createElement('img');
+                    img.src = "uploads/" + data[i].Nom;
+                    picturesContainer.append(img);
                 }
             })
+            .catch(error => {
+                console.error(error);
+                // Gérer les erreurs ici, par exemple, afficher un message à l'utilisateur.
+            });
     }
     function submitAllPlans(){
-        fetch(localhost + '/submitAllPlans/' + MyActualProject.id,{
-            method:"GET"
-        })
-            .then(data => data.json())
-            .then(function (data){
-                ShowPiece.style.display = "none"
-                let div = document.querySelector('#Plans')
-                for(let i = 0; i < data.length; i++){
-                    let img = document.createElement('img')
-                    img.maxWidth = "500px"
-                    img.height = "auto"
-                    img.src = "uploads/"
-                    div.append(img)
-                }
-            })
     }
     function ShowArchives() {
         document.getElementById("Project").style.display = "none"
