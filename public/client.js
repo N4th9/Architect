@@ -228,7 +228,8 @@ document.addEventListener("DOMContentLoaded", () => {
         })
             .then(res => res.json())
             .then(DisplayImages)
-            .catch((err) => ("Error occured", err));
+            .catch((err) => ("Error occured " + err));
+        DisplayImages()
     }
     function DisplayImages() {
         const picturesContainer = document.querySelector('#Pictures');
@@ -255,11 +256,10 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .catch(error => {
                 console.error(error);
-                // Gérer les erreurs ici, par exemple, afficher un message à l'utilisateur.
             });
     }
 
-    function submitPlans(e){
+    function submitPlans(){
         fetch(localhost + "/uploads_plans/" + MyActualPiece.id, {
             method: 'POST',
             body: new FormData(document.getElementById("FormUploadsPlans"))
@@ -267,8 +267,9 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(res => res.json())
             .then(DisplayPlans)
             .catch((err) => ("Error " + err));
+        DisplayPlans()
     }
-    function DisplayPlans(data) {
+    function DisplayPlans() {
         const picturesContainer = document.querySelector('#Plans');
         picturesContainer.innerText = "";
         fetch(localhost + "/uploads_SendPlan/" + MyActualPiece.id, {
@@ -293,14 +294,12 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .catch(error => {
                 console.error(error);
-                // Gérer les erreurs ici, par exemple, afficher un message à l'utilisateur.
             });
     }
     function submitAllPlans(){
 
         DivShowPiece.style.display = "none";
         picturesContainerAllPlans.innerText = "";
-
 
         if (AllPlans) {
             DivShowPiece.style.display = "";
