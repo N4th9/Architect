@@ -38,7 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const buttonArchives = document.getElementById("buttonArchives")
     const HiArchives = document.getElementById("HiddenArchives")
     const picturesContainerAllPlans = document.querySelector('#AllPlans');
-    let DivShowPiece = document.getElementById("ShowPiece");
+    const DivShowPiece = document.getElementById("ShowPiece");
+    const HArchives = document.getElementById("HiddenArchives")
 
     //******************Keyup of Event************************
     ProjectTitle.addEventListener('keyup', UpdateProject)
@@ -59,7 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
     HiArchives.addEventListener("click", HiddenArchives)
 
     DisplayProject()
-    let HArchives = document.getElementById("HiddenArchives")
     HArchives.style.display = "none"
     Archives.style.display = "none"
 
@@ -237,16 +237,7 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch(localhost + "/uploads/" + MyActualPiece.id, {
             method: "GET"
         })
-            .then(response => {
-                if (!response.ok) {
-                    if (response.status === 404) {
-                        throw new Error(`Les images pour la pièce avec l'ID ${MyActualPiece.id} n'ont pas été trouvées.`);
-                    } else {
-                        throw new Error(`Erreur lors de la récupération des données : ${response.status}`);
-                    }
-                }
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
                 for (let i = 0; i < data.length; i++) {
                     let img = document.createElement('img');
@@ -275,16 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch(localhost + "/uploads_SendPlan/" + MyActualPiece.id, {
             method: "GET"
         })
-            .then(response => {
-                if (!response.ok) {
-                    if (response.status === 404) {
-                        throw new Error(`Les plans pour la pièce avec l'ID ${MyActualPiece.id} n'ont pas été trouvées.`);
-                    } else {
-                        throw new Error(`Erreur lors de la récupération des données : ${response.status}`);
-                    }
-                }
-                return response.json();
-            })
+            .then(response =>response.json()
             .then(data => {
                 for (let i = 0; i < data.length; i++) {
                     let img = document.createElement('img');
@@ -294,7 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .catch(error => {
                 console.error(error);
-            });
+            }));
     }
     function submitAllPlans(){
 
