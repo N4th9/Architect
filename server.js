@@ -21,50 +21,35 @@ const db = new sqlite3.Database('./ARCHITECT.db', (err) => {
         throw err;
     }else{
         console.log("database open")
-        console.log("address http://localhost:3500")
     }
 })
 //**************************Display all projects*******************************
 app.get("/api/Projets", (req, res)=>{
     db.all("SELECT * FROM Projets WHERE Supprime = 0;", (err, row)=>{
-        if (err){
-            return console.log(err.message)
-        }else{
-            console.log(row)
-            res.send(row)
-        }
+        res.send(row)
     })
 })
 //**************************INSERT NEW PROJECT*********************************
 app.post("/api/Projet", (req, res) => {
     db.run("INSERT INTO Projets (Nom, Description, Supprime) values ('Nouveau projet','Description', 0);", function (err){
-        if (err){
-            return console.log(err.message)
-        }
         res.send()
-        console.log("[Projet ajouté]")
-
     })
 })
 //**************************INSERT NEW PIECE*********************************
 app.post("/api/Piece/:id/piece", (req, res) => {
 db.run("INSERT INTO Pieces (IdProjet, Nom, Description) values(?,'Nouvelle pièce','Description');",[req.params.id],function (err){
         if (err){
-            return console.log(err.message)
         }
         res.json({message : "Is fully added"})
-        console.log("[Piece ajouté]")
     })
 })
 //***************************UPDATE NAME OF PROJECT***************************
 app.put("/api/UpdateProjet/:id", (req, res)=>{
     db.run("UPDATE Projets SET Nom = ?, Description = ? WHERE ID = ?;",[req.body.name,req.body.description,req.params.id], (err)=>{
         if(err){
-            return console.log(err.message)
         }
         else {
             res.send(req.body)
-            console.log("[Projet modifié]")
         }
     } )
 })
@@ -72,11 +57,9 @@ app.put("/api/UpdateProjet/:id", (req, res)=>{
 app.put("/api/UpdatePiece/:id", (req, res)=>{
     db.run("UPDATE Pieces SET Nom = ?, Description = ? WHERE ID = ?;",[req.body.Piecename,req.body.Piecedescription,req.params.id],(err)=>{
         if(err){
-            return console.log(err.message)
         }
         else {
             res.send(req.body)
-            console.log("[Pièce modifiée]")
         }
     })
 })
@@ -84,10 +67,8 @@ app.put("/api/UpdatePiece/:id", (req, res)=>{
 app.delete("/api/DeleteProject/:id",(req,res)=>{
     db.run("DELETE FROM Projets WHERE ID = "+ req.params.id +";", (err)=> {
         if(err){
-            return console.log(err.message)
         }
         else {
-            console.log("[Projet effacé]")
             res.json("[PROJET EFFACE]")
         }
     })
@@ -96,10 +77,8 @@ app.delete("/api/DeleteProject/:id",(req,res)=>{
 app.delete("/api/DeletePiece/:id",(req,res)=>{
     db.run("DELETE FROM Pieces WHERE ID = "+ req.params.id +";", (err)=> {
         if(err){
-            return console.log(err.message)
         }
         else {
-            console.log("[piece effacé]")
             res.json("[PIECE EFFACE]")
         }
     })
@@ -110,22 +89,18 @@ app.post('/uploads_img/:id', upload.single('file'), uploadpictures)
         console.log(req.file)
         db.run("INSERT INTO Images (Nom, PieceID) values(?, ?);",[req.file.filename,req.params.id],(err)=>{
             if(err){
-                return console.log(err.message)
             }
             else {
-                console.log("[image bien ajouter]")
+                res.send({message : "Is fully added"})
             }
         })
     }
 //**************************SEND PICTURES TO NAVIGATOR***********************
 app.get('/uploads/:id',(req,res)=>{
     db.all("SELECT Images.ID,Images.Nom FROM Images JOIN Pieces ON Pieces.ID = Images.PieceID WHERE Pieces.ID = ?",[req.params.id],(err,row)=>{
-        if(err){
-            return console.log(err.message)
-        }
-        else {
-            console.log("image bien envoyer")
-            res.send(row)
+        if (err) {
+        } else {
+            res.send(row);
         }
     })
 })
@@ -134,22 +109,14 @@ app.post('/uploads_plans/:id', upload.single('fileplan'), uploadplans)
 function uploadplans(req, res){
     console.log(req.file)
     db.run("INSERT INTO Plans (Nom, PieceIDPlan) values(?, ?);",[req.file.filename,req.params.id],(err)=>{
-        if(err){
-            return console.log(err.message)
-        }
-        else {
-            console.log("[plan bien ajouter]")
-        }
     })
 }
 //**************************SEND PLANS TO NAVIGATOR***********************
 app.get('/uploads_SendPlan/:id',(req,res)=>{
     db.all("SELECT Plans.ID,Plans.Nom FROM Plans JOIN Pieces ON Pieces.ID = Plans.PieceIDPlan WHERE Pieces.ID = ?",[req.params.id],(err,row)=>{
         if(err){
-            return console.log(err.message)
         }
         else {
-            console.log("plan bien envoyer")
             res.send(row)
         }
     })

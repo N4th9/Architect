@@ -249,7 +249,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.error(error);
             });
     }
-
     function submitPlans(){
         fetch(localhost + "/uploads_plans/" + MyActualPiece.id, {
             method: 'POST',
