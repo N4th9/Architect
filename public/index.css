@@ -22,11 +22,11 @@ body{
     overflow-x: hidden;
 }
 .ShArchives{
-    margin: 1000px 0 0 60px;
+    margin: 925px 0 0 60px;
     position: inherit;
 }
 .HArchives{
-    margin: 1000px 0 0 60px;
+    margin: 925px 0 0 60px;
     position: inherit;
 }
 .projects{
@@ -59,7 +59,7 @@ p button{
 }
 item{
     width: auto;
-    padding: 0px 0px 60px 0px;
+    padding: 0 0px 60px 0px;
     margin: 0px 20px 0px 20px;
     display: flex;
 }
@@ -88,6 +88,7 @@ item{
 .ShowPiece{
     transition: all .5s ease;
     background-color: white;
+    width: 1060px;
 }
 .trashicon{
     cursor: pointer;
@@ -173,7 +174,7 @@ FormUploads{
     padding: 30px 0 20px 20px;
 }
 #Plans{
-    column-count: 2;
+    column-count: 1;
     margin-left: 20px;
 }
 .ItemAllPlans{

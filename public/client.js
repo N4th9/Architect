@@ -208,20 +208,11 @@ document.addEventListener("DOMContentLoaded", () => {
         PieceTitle.innerText = MyActualPiece.Piecename
         DescriptionPieceTitle.innerText = MyActualPiece.Piecedescription
 
-        //***************Permet de mettre à jour l'affichage des plans***********
-        document.querySelector('#Plans').innerText = ""
-        fetch(localhost + "/uploads/" + MyActualPiece.id,{
-            method:"GET"
-        })
-            .then(data => data.json())
-            .then(function (data) {
-                DisplayPlans(data)
-            })
-
         DisplayImages()
         DisplayPlans()
     }
-    function submitImages() {
+    function submitImages(e) {
+        e.preventDefault();
         fetch(localhost + "/uploads_img/" + MyActualPiece.id, {
             method: 'POST',
             body: new FormData(document.getElementById("FormUploads"))
@@ -249,7 +240,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.error(error);
             });
     }
-    function submitPlans(){
+    function submitPlans(e){
+        e.preventDefault();
         fetch(localhost + "/uploads_plans/" + MyActualPiece.id, {
             method: 'POST',
             body: new FormData(document.getElementById("FormUploadsPlans"))

@@ -21,6 +21,7 @@ const db = new sqlite3.Database('./ARCHITECT.db', (err) => {
         throw err;
     }else{
         console.log("database open")
+        console.log("http://localhost:3500")
     }
 })
 //**************************Display all projects*******************************
