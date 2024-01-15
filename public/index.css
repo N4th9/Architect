@@ -64,7 +64,7 @@ item{
     display: flex;
 }
 .Project{
-    width: 900px;
+    width: 100%;
     position: fixed;
     transition: all .5s ease;
     height: 100vh;
@@ -73,14 +73,14 @@ item{
 }
 .MenuBurger{
     cursor: pointer;
-    margin: 3% 0 0 1%;
+    margin: 2% 0 0 1%;
     height: 30px;
     width: 20px;
     position: absolute;
 }
 .MenuBurgerPiece{
     cursor: pointer;
-    margin: 24px 0 0 11px;
+    margin: 24px 0 0 15px;
     height: 30px;
     width: 20px;
     position: absolute;
@@ -92,14 +92,14 @@ item{
 }
 .trashicon{
     cursor: pointer;
-    margin-left: 800px;
-    margin-top: 40px;
+    margin-left: 75%;
+    margin-top: 23px;
     width: 20px;
     position: absolute;
 }
 .trashicon2{
     cursor: pointer;
-    margin-left: 576px;
+    margin-left: 60%;
     margin-top: 25px;
     width: 20px;
     position: absolute;
@@ -123,9 +123,8 @@ item{
     background-color: lightgray;
     font-size: 30px;
     position: static;
-    overflow-x: hidden;
     height: 100vh;
-    width: 25%;
+    width: 225px;
 }
 .ItemPiece{
     padding: 20px 0px 20px 30px;

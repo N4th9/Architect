@@ -107,10 +107,15 @@ app.get('/uploads/:id',(req,res)=>{
 })
 //**************************UPLOAD PLANS TO FOLDER UPLOADS******************
 app.post('/uploads_plans/:id', upload.single('fileplan'), uploadplans)
-function uploadplans(req, res){
-    console.log(req.file)
-    db.run("INSERT INTO Plans (Nom, PieceIDPlan) values(?, ?);",[req.file.filename,req.params.id],(err)=>{
-    })
+    function uploadplans(req, res){
+        console.log(req.file)
+        db.run("INSERT INTO Plans (Nom, PieceIDPlan) values(?, ?);",[req.file.filename,req.params.id],(err)=>{
+            if(err){
+            }
+            else {
+                res.send({message : "Is fully added"})
+            }
+        })
 }
 //**************************SEND PLANS TO NAVIGATOR***********************
 app.get('/uploads_SendPlan/:id',(req,res)=>{

@@ -248,29 +248,28 @@ document.addEventListener("DOMContentLoaded", () => {
         })
             .then(res => res.json())
             .then(DisplayPlans)
-            .catch((err) => ("Error " + err));
+            .catch((err) => ("Error occured " + err));
         DisplayPlans()
     }
     function DisplayPlans() {
-        const picturesContainer = document.querySelector('#Plans');
-        picturesContainer.innerText = "";
+        const picturesContainerPlans = document.querySelector('#Plans');
+        picturesContainerPlans.innerText = "";
         fetch(localhost + "/uploads_SendPlan/" + MyActualPiece.id, {
             method: "GET"
         })
-            .then(response =>response.json()
+            .then(response => response.json())
             .then(data => {
                 for (let i = 0; i < data.length; i++) {
                     let img = document.createElement('img');
                     img.src = "uploads/" + data[i].Nom;
-                    picturesContainer.append(img);
+                    picturesContainerPlans.append(img);
                 }
             })
             .catch(error => {
                 console.error(error);
-            }));
+            });
     }
     function submitAllPlans(){
-
         DivShowPiece.style.display = "none";
         picturesContainerAllPlans.innerText = "";
 
